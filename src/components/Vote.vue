@@ -229,6 +229,7 @@ export default {
     finish() {
       clearInterval(this.voteTimer);
       this.$store.commit("session/addHistory", this.players);
+      this.$store.commit("session/removeDeadVotes", this.players);
       this.$store.commit("session/nomination");
     },
     vote(vote) {

@@ -91,6 +91,13 @@ const mutations = {
         .map(({ name }) => name)
     });
   },
+  removeDeadVotes(state, players) {
+    if (!state.nomination || state.lockedVote <= players.length) return;
+    players
+      .filter((player, index) => state.votes[index])
+      .filter(player => player.isDead)
+      .forEach(player => (player.isVoteless = true));
+  },
   clearVoteHistory(state) {
     state.voteHistory = [];
   },
